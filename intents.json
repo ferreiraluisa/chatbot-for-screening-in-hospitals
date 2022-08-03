@@ -1,0 +1,20 @@
+{"intents": [
+    {"tags": "grettings",
+    "patterns": ["ola", "oi", "bom dia", "boa tarde", "boa noite", "tudo bem?"], 
+    "responses": ["Olá! Como está se sentindo?", "Oi!", "Olá! Como poderia de ajudar?"]},
+    {"tags": "goodbye",
+    "patterns": ["tchau", "ate mais", "vou indo", "adeus", "obrigada pela ajuda"], 
+    "responses": ["Espero que tenha te ajudado! Sua ficha será encaminhada para o médico"]},
+    {"tags": "help",
+    "patterns": ["ajuda", "passando mal", "nao estou bem", "sentindo mal"], 
+    "responses": ["Estou aqui para te ajudar. Poderia me falar o que está sentindo?", "O que você está sentido?", "Irei te ajudar, quais são seus sintomas?"]},
+    {"tags": "symptons",
+    "patterns": ["dor de cabeça", "dor", "dor no estômago", "dor de barriga", "cólica", "nariz entupido", "cansaço", "falta de paladar"], 
+    "responses": ["Só isso que está sentindo?"]},
+    {"tags": "fever",
+    "patterns": ["febre"], 
+    "responses": ["Quando a febre começou?", "Qual sua temperatura?"]}
+
+
+
+]}
