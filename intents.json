@@ -1,20 +1,22 @@
 {"intents": [
-    {"tags": "grettings",
-    "patterns": ["ola", "oi", "bom dia", "boa tarde", "boa noite", "tudo bem?"], 
-    "responses": ["Olá! Como está se sentindo?", "Oi!", "Olá! Como poderia de ajudar?"]},
-    {"tags": "goodbye",
-    "patterns": ["tchau", "ate mais", "vou indo", "adeus", "obrigada pela ajuda"], 
-    "responses": ["Espero que tenha te ajudado! Sua ficha será encaminhada para o médico"]},
-    {"tags": "help",
-    "patterns": ["ajuda", "passando mal", "nao estou bem", "sentindo mal"], 
-    "responses": ["Estou aqui para te ajudar. Poderia me falar o que está sentindo?", "O que você está sentido?", "Irei te ajudar, quais são seus sintomas?"]},
-    {"tags": "symptons",
-    "patterns": ["dor de cabeça", "dor", "dor no estômago", "dor de barriga", "cólica", "nariz entupido", "cansaço", "falta de paladar"], 
-    "responses": ["Só isso que está sentindo?"]},
-    {"tags": "fever",
-    "patterns": ["febre"], 
-    "responses": ["Quando a febre começou?", "Qual sua temperatura?"]}
-
-
-
+    {"tag": "grettings",
+    "patterns": ["hi", "hello", "good morning", "good afternoon", "good night", "whats up?"], 
+    "responses": ["Hi! I'm here to help you! How are you feeling?", "Hello! How can I help you?"]},
+    {"tag": "goodbye",
+    "patterns": ["bye", "goodbye", "thanks for your help"], 
+    "responses": ["I hope you get better soon. Your medical record will be forwarded to the doctor"]},
+    {"tag": "help",
+    "patterns": ["help", "feeling sick", "not feeling good", "headache"], 
+    "responses": ["I'm here to help you. Can you tell me what you are feeling?", "Can you tell me what are you feeling?"]},
+    {"tag": "symptons",
+    "patterns": ["headache", "tiredness", "cough", "sneezing", "muscle_aches", "sore throat", "runny nose", "stuffy nose", "fever", "nause", "vomiting", "diarrhea", "difficulty in breathing", "loss of taste", "loss of smell", "itchy nose", "itchy mouth", "pink eye", "itchy inner ear"], 
+    "responses": ["I see you are listing symptons. Please select some symptons that you are feeling: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing",  "Can you tell if you are feeling more symptons? Please responde according to this list: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing"]},
+    {"tag": "symptons",
+    "patterns": ["headache", "tiredness", "cough", "sneezing", "muscle_aches", "sore throat", "runny nose", "stuffy nose", "fever", "nause", "vomiting", "diarrhea", "difficulty in breathing", "loss of taste", "loss of smell", "itchy nose", "itchy mouth", "pink eye", "itchy inner ear"], 
+    "responses": ["I see you are listing symptons. Please select some symptons that you are feeling: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing",  "Can you tell if you are feeling more symptons? Please responde according to this list: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing"]},
+    {"tag": "check",
+    "patterns": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"], 
+    "responses": ["Is that all?", "You are feeling something else?"]}
 ]}
+
+   
