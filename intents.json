@@ -1,22 +1,26 @@
 {"intents": [
     {"tag": "grettings",
-    "patterns": ["hi", "hello", "good morning", "good afternoon", "good night", "whats up?"], 
-    "responses": ["Hi! I'm here to help you! How are you feeling?", "Hello! How can I help you?"]},
+    "patterns": ["hi", "hello", "good morning", "good afternoon", "good night", "whats up?", "hello, how are you?", "hi, how are you?"], 
+    "responses": ["Hi! I'm here to help you! Can I ask you a couple questions for the registration?", "Hello! I need to ask some questions before we talk about what are you feeling."]},
+    {"tag": "registration",
+    "patterns": ["yes", "of course", "ok", "please ask me", "feel free to ask"], 
+    "responses": ["What's your name?", "Please tell me your first and last name."]},
     {"tag": "goodbye",
-    "patterns": ["bye", "goodbye", "thanks for your help"], 
+    "patterns": ["bye", "goodbye", "thanks for your help", "see you soon"], 
     "responses": ["I hope you get better soon. Your medical record will be forwarded to the doctor"]},
-    {"tag": "help",
-    "patterns": ["help", "feeling sick", "not feeling good", "headache"], 
-    "responses": ["I'm here to help you. Can you tell me what you are feeling?", "Can you tell me what are you feeling?"]},
-    {"tag": "symptons",
-    "patterns": ["headache", "tiredness", "cough", "sneezing", "muscle_aches", "sore throat", "runny nose", "stuffy nose", "fever", "nause", "vomiting", "diarrhea", "difficulty in breathing", "loss of taste", "loss of smell", "itchy nose", "itchy mouth", "pink eye", "itchy inner ear"], 
-    "responses": ["I see you are listing symptons. Please select some symptons that you are feeling: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing",  "Can you tell if you are feeling more symptons? Please responde according to this list: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing"]},
-    {"tag": "symptons",
-    "patterns": ["headache", "tiredness", "cough", "sneezing", "muscle_aches", "sore throat", "runny nose", "stuffy nose", "fever", "nause", "vomiting", "diarrhea", "difficulty in breathing", "loss of taste", "loss of smell", "itchy nose", "itchy mouth", "pink eye", "itchy inner ear"], 
-    "responses": ["I see you are listing symptons. Please select some symptons that you are feeling: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing",  "Can you tell if you are feeling more symptons? Please responde according to this list: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing"]},
-    {"tag": "check",
-    "patterns": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"], 
-    "responses": ["Is that all?", "You are feeling something else?"]}
+    {"tag": "symptoms",
+    "patterns": ["headache", "tiredness", "cough", "sneezing", "muscle_aches", "sore throat", "runny nose", "stuffy nose", "fever", "nause", "vomiting", "diarrhea", "difficulty in breathing", "loss of taste", "loss of smell", "itchy nose", "itchy mouth", "pink eye", "itchy inner ear", "feeling sick", "not feeling good", "hurt"], 
+    "responses": ["I see you are listing symptons. Please select all symptons that you are feeling according to this list: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing, please respond with numbers",  "Can you tell me all the symptoms that you are feeling? Please responde according to this list: (1)Cough (2)Muscle aches (3)Tiredness (4)Sore throat (5)Runny nose (6)Stuffy nose (8)Fever (9)Nause (10) Vomiting (11)Diarrhea (13)Shortness of breath (14) Difficulty in breathing (15) Loss of taste (16) Loss of smell (17) Itchy Nose (18) Itchy eyes (19)Itchy inner ear (20) Sneezing, please respond only with numbers"]},
+    {"tag": "fever",
+    "patterns": ["i have a fever", "fever degrees", "temp's", "fever"], 
+    "responses": ["Can you tell what's your body temperature?", "What's your body temperature?"]},
+    {"tag": "finishing",
+    "patterns": ["no", "that is all what i'm feeling", "nothing else than this", "only this"], 
+    "responses": ["Ok, I think I know enough to fowared to the doctor."]},
+    {"tag": "about-bot",
+    "patterns": ["who are you?", "why are you helping?", "tell me about yourself"], 
+    "responses": ["Hi! I'm NuseBot, I'm an artificial intellence and I discover the probabilities that you have COVID. If you have high chances to have COVID you be transfered to another side of the hospital, it's a time to be careful!"]}
+
 ]}
 
    
