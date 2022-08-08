@@ -6,8 +6,11 @@ import random
 import json
 import pickle
 import nltk
+import joblib
 from nltk.stem import WordNetLemmatizer
 from tensorflow.python.keras.models import load_model
+from medical_record import generate_medical_record
+
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -17,8 +20,10 @@ lemmatizer = WordNetLemmatizer()
 
 symptom_dict = { 1 : "Cough" , 2 : "Muscle aches",  3 : "Tiredness",  4 : "Sore throat",  5 : "Runny nose",  6 : "Stuffy nose",  8 : "Fever ", 9 : "Nause",  10 : "Vomiting", 11 : "Diarrhea", 13 : "Shortness of breath", 14 : " Difficulty in breathing",  15 : " Loss of taste ", 16 : " Loss of smell ", 17 : " Itchy Nose",  18 : " Itchy eyes",  19 : "Itchy inner ear ", 20 : "Sneezing"}
 
+disease_dict = {0 : 'Allergy', 1 : 'Cold', 2 : 'Covid 19', 3 : 'Flu'}
+
 data = {}
-data['symptom'] = []
+data['symptoms'] = []
 data['symptom_described'] = []
 data['fever_degree'] = []
 
@@ -27,6 +32,8 @@ intents = json.loads(open('intents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbot_model.model')
+modelRF = joblib.load('rf_model.sav')
+modelKNN = joblib.load('knn_model.sav')
 
 def isfloat(num):
     try:
@@ -73,15 +80,11 @@ def get_response(tag, intents_json, message):
                 data['age'] = input("")
                 print('What you do for a living?')
                 data['job'] = input("")
+                print('What is you phone number?')
+                data['phone_number'] = input("")
                 print("And for how long you are feeling sick?")
                 data['days_sick'] = input("")
                 print("OK. I create your medical record. Now tell me, how are you feeling?")
-            elif tag == "check":
-                symptoms = nltk.word_tokenize(message)
-                for symptom in symptoms:
-                    if (symptom != ',' or symptom != '.') and symptom.isnumeric():
-                        data['symptom'].append(symptom)
-                print(result)
             elif tag == "symptoms":
                 data['symptom_described'].append(message)
                 print(result)
@@ -89,7 +92,7 @@ def get_response(tag, intents_json, message):
                 symptoms = nltk.word_tokenize(message)
                 for symptom in symptoms:
                     if (symptom != ',' or symptom != '.') and symptom.isnumeric():
-                        data['symptom'].append(symptom)
+                        data['symptoms'].append(symptom)
                 print("Are you feeling something else?")
             elif tag == "fever":
                 data['symptom_described'].append(message)
@@ -109,14 +112,19 @@ def get_response(tag, intents_json, message):
 print('testando bot....')
 
 tag = "grettings"
-# while tag != "goodbye":
-#     message = input("")
-#     # ints = predict_class(message)
-#     tag = predict_class(message)[0]['intent']
-#     res = get_response(tag, intents, message)
+while tag != "goodbye":
+    message = input("")
+    tag = predict_class(message)[0]['intent']
+    res = get_response(tag, intents, message)
 
 symptoms = [0] * 20
-for i in data['symptom']:
+for i in data['symptoms']:
     symptoms[i-1] = 1
 
-print(symptoms)
+data['rf_model'] = disease_dict.get(modelRF.predict([symptoms])[0])
+data['knn_model'] = disease_dict.get(modelKNN.predict([symptoms])[0])
+
+generate_medical_record(data)
+
+
+
