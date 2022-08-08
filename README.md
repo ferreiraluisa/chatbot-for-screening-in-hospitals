@@ -26,8 +26,16 @@ O trabalho proposto é um chatbot responsável por fazer triagem em hospitais pa
  
 ## Metodologia
 Utilizei um <a href="https://www.kaggle.com/datasets/walterconway/covid-flu-cold-symptoms">dataset</a> disponível no Kaggle, com vários casos de enfermidade junto aos seus sintomas e a classificação de cada um dos casos como alergia, resfriado, covid ou gripe. Essa base de dados está desbalanceada, existem muitos casos de alergia em comparação com covid, resfriado e gripe,isso é um problema pois pode gerar muitos "alarmes falsos", o diagnóstico acabaria tendenciando muito para alergia, pois tem muitas amostras e por os sintomas entre as quatro enfermidades serem bem semelhantes, além de dificultar a avaliação de eficácia. Por isso, utilizei a técnica de under-sampling, com o método RandomUnderSampler() da biblioteca imblearn.under_sampling.
-    <img src="imagens/sem_under_sampling.png" alt="sem under sampling" align="right" height="55" />
-    <img src="imagens/com_under_sampling.png" alt="sem under sampling" align="left" height="55" />
+<br>
+    <figure align="left">
+        <img src="imagens/without_under_sampling.png" alt="sem under sampling" height= "250">
+        <figcaption>Sem under sampling</figcaption>
+    </figure>
+    <figure align="right" >
+        <img src="imagens/with_under_sampling.png" alt="sem under sampling"  height= "250">
+        <figcaption>Com under sampling</figcaption>
+    </figure>
+    <br>
     
 
 ## Resultados
