@@ -10,6 +10,7 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, Activation, Dropout
 from tensorflow.python.keras.optimizers import gradient_descent_v2
+from tensorflow.python.keras.optimizers import adam_v2
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
@@ -65,7 +66,7 @@ model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation="softmax"))
 
 
-opt = gradient_descent_v2.SGD(learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+opt = adam_v2.Adam(learning_rate=0.01)
 model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)

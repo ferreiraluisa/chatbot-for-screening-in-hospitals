@@ -15,11 +15,25 @@ nltk.download('omw-1.4')
 
 lemmatizer = WordNetLemmatizer()
 
+symptom_dict = { 1 : "Cough" , 2 : "Muscle aches",  3 : "Tiredness",  4 : "Sore throat",  5 : "Runny nose",  6 : "Stuffy nose",  8 : "Fever ", 9 : "Nause",  10 : "Vomiting", 11 : "Diarrhea", 13 : "Shortness of breath", 14 : " Difficulty in breathing",  15 : " Loss of taste ", 16 : " Loss of smell ", 17 : " Itchy Nose",  18 : " Itchy eyes",  19 : "Itchy inner ear ", 20 : "Sneezing"}
+
+data = {}
+data['symptom'] = []
+data['symptom_described'] = []
+data['fever_degree'] = []
+
 intents = json.loads(open('intents.json').read())
 
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbot_model.model')
+
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
 
 def clean_up_sentence(sentence):
     setence_words = nltk.word_tokenize(sentence)
@@ -47,20 +61,62 @@ def predict_class(sentence):
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])[1]})
     return return_list
 
-def get_response(intents_list, intents_json):
-    tag = intents_list[0]['intent']
+def get_response(tag, intents_json, message):
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if i['tag'] == tag:
             result = random.choice(i['responses'])
+            if tag == "registration":
+                print(result)
+                data['name'] = input("")
+                print('And how old are you?')
+                data['age'] = input("")
+                print('What you do for a living?')
+                data['job'] = input("")
+                print("And for how long you are feeling sick?")
+                data['days_sick'] = input("")
+                print("OK. I create your medical record. Now tell me, how are you feeling?")
+            elif tag == "check":
+                symptoms = nltk.word_tokenize(message)
+                for symptom in symptoms:
+                    if (symptom != ',' or symptom != '.') and symptom.isnumeric():
+                        data['symptom'].append(symptom)
+                print(result)
+            elif tag == "symptoms":
+                data['symptom_described'].append(message)
+                print(result)
+                message = input("")
+                symptoms = nltk.word_tokenize(message)
+                for symptom in symptoms:
+                    if (symptom != ',' or symptom != '.') and symptom.isnumeric():
+                        data['symptom'].append(symptom)
+                print("Are you feeling something else?")
+            elif tag == "fever":
+                data['symptom_described'].append(message)
+                print(result)
+                degrees = input("")
+                degrees = nltk.word_tokenize(degrees)
+                for degree in degrees:
+                    if isfloat(degree):
+                        data["fever_degree"].append(degree)
+                print("Are you feeling something else?")
+            else:
+                print(result)
             break
-    return result
+    return 
+
 
 print('testando bot....')
 
-while True:
-    message = input("")
-    ints = predict_class(message)
-    print(ints)
-    res = get_response(ints, intents)
-    print(res)
+tag = "grettings"
+# while tag != "goodbye":
+#     message = input("")
+#     # ints = predict_class(message)
+#     tag = predict_class(message)[0]['intent']
+#     res = get_response(tag, intents, message)
+
+symptoms = [0] * 20
+for i in data['symptom']:
+    symptoms[i-1] = 1
+
+print(symptoms)
