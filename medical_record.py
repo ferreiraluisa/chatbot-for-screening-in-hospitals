@@ -12,10 +12,24 @@ def generate_medical_record(data):
     document.add_paragraph('Phone Number: ' + data['phone_number'])
 
     document.add_heading('Symptoms', level=1)
+    document.add_paragraph('How long patient is sick: ' + data['days_sick'])
+    cont = 0
+    if len(data['fever_degree']) > 0:
+        for degree in data['fever_degree']:
+            p2 = document.add_paragraph("Fever's degree: ")
+            if cont == len(data['fever_degree'])-1:
+                p2.add_run(degree)
+            else:
+                p2.add_run(degree + ',')
+            cont+=1
+    cont = 0
     p1 = document.add_paragraph('Symptoms described by patient: ')
     for symptom in data['symptom_described']:
-        p1.add_run(symptom)
-        p1.add_run(',')
+        if cont == len(data['symptom_described'])-1:
+            p1.add_run(symptom)
+        else:
+            p1.add_run(symptom + ',')
+        cont += 1
     p = document.add_paragraph('Symptoms: ')
     for symptom in data['symptoms']:
         p.add_run(symptom_dict.get(symptom) + ',')
