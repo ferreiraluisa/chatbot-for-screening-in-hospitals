@@ -83,7 +83,7 @@ weighted avg       0.89      0.86      0.85       844
     <figcaption>Matriz de confusão do Random Forest</figcaption>
  </figure><br>
  
- &emsp;&emsp;Para rede neural utilizada para a construção do chatBot, temos uma acurácia de 96.49% após o treinamento de 200 epócas.<br>
+ &emsp;&emsp;Para rede neural utilizada para a construção do chatBot, temos uma acurácia de 98.25% após o treinamento de 200 epócas.<br>
 <code>
 Epoch 1/100 <br>
 12/12 [==============================] - 1s 2ms/step - loss: 2.0453 - accuracy: 0.2281 <br>
@@ -289,7 +289,7 @@ Training complete <br>
 </code>
 
 ## Conclusão
-&emsp;&emsp; Apesar dos modelos terem eficácias altas, existem muitos casos de gripe e resfriados que são confundidos com COVID e por COVID ser uma doença altamente contagiosa, responsável por uma pandemia que parou o mundo inteiro, não é muito aconselhável confiar no diagnóstico de COVID, gripe e resfriado, já que são confundidos com uma frequência maior que eu esperava. Porém, os modelos foram excelentes em separar esses casos da alergia, o que é bom porque a alergia tem sintomas bem semelhantes ao COVID. 
+&emsp;&emsp; Apesar dos modelos terem eficácias altas, existem muitos casos de gripe e resfriados que são confundidos com COVID e como o COVID é uma doença altamente contagiosa, que foi responsável por uma pandemia que parou o mundo inteiro, talvez não seja muito aconselhável confiar no diagnóstico de COVID, gripe e resfriado, já que são confundidos com uma frequência maior que eu esperava. Porém, os modelos foram excelentes em separar esses casos da alergia, o que é bom porque a alergia tem sintomas bem semelhantes ao COVID. 
 
 
 ## Referências
