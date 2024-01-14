@@ -2,7 +2,7 @@
     <img src="https://cdn.discordapp.com/attachments/729689711416967239/844210892916523018/Ygemzly2XsP3gzFbXjFyExvD00B3rBvPbDEOoNOB-4uL4NLF1YKM6kiypik1H4koNc5_sNVAAAy_PDq_kmh_CRmn1dvC1uyeckCs.png" alt="UFV logo" title="UFV" align="right" height="55" />
 </a>
 <br>
-<h1 align = "center"> Trabalho Final - INF420 </h1>
+<h1 align = "center"> Final Project - INF420 </h1>
 
 
 <h2 align = "center"> ChatBot for screening in hospitals </h2>
@@ -10,30 +10,30 @@
 
 ## Index
 
-- [Summary](#Resumo)
-- [Introduction](#Introdução)
-- [Methodology](#Metodologia)
-- [Results](#Resultados)
-- [Conclusion](#Conclusão)
-- [References](#Referências)
+- [Summary](#Summary)
+- [Introduction](#Introduction)
+- [Methodology](#Methodology)
+- [Results](#Results)
+- [Conclusion](#Conclusion)
+- [References](#References)
 - [Responsibles](#Responsáveis)
 
-## Resumo
+## Summary
 &emsp;&emsp;Final project presented to the Artificial Intelligence I course, with code INF 420, taught by Professor Julio C. S. Reis, as a partial requirement for approval in the course.
 
-## Introdução
+## Introduction
 &emsp;&emsp;The proposed project is a chatbot responsible for screening in hospitals to differentiate COVID cases from other similar symptomatic cases, such as allergy, cold, and flu. Additionally, at the end, it generates a medical record of the patient with personal information, such as name, age, occupation, symptoms, the number of days the person has been sick, and the result of the prediction made using artificial intelligence techniques.<br>
 &emsp;&emsp;To use the chatbot, it is necessary to run randomforest_knn.py and trainingBot.py before running chatBot.py.<br>
  
-## Metodologia
+## Methodology
 &emsp;&emsp;I used a <a href="https://www.kaggle.com/datasets/walterconway/covid-flu-cold-symptoms">dataset</a> available on Kaggle, containing various illness cases along with their symptoms and the classification of each case as allergy, cold, COVID, or flu. This database is imbalanced, with many cases of allergy and flu compared to COVID and cold. This is a problem as it can lead to many "false alarms," with the diagnosis leaning heavily towards allergy and flu due to their higher sample count. The symptoms among the four illnesses are quite similar, making it challenging to assess effectiveness. Therefore, I employed the under-sampling technique using the RandomUnderSampler() method from the imblearn.under_sampling library.<br>
     <figure align="left">
         <img src="imagens/without_under_sampling.png" alt="sem under sampling" height= "250">
-        <figcaption>Sem under sampling</figcaption>
+        <figcaption>Without under sampling</figcaption>
     </figure>
     <figure align="right" >
         <img src="imagens/with_under_sampling.png" alt="sem under sampling"  height= "250">
-        <figcaption>Com under sampling</figcaption>
+        <figcaption>With under sampling</figcaption>
     </figure>
 <br>
 &emsp;&emsp;To address the classification problem, I employed two techniques: Random Forest and K-Nearest Neighbor. For Random Forest, I set the number of decision trees to 10, with separation criterion as entropy, and a random_state of 42. For K-Nearest Neighbor, I chose a number of neighbors as 10 and used the Euclidean metric. The training of the models is in the file randomforest_knn.py. After training, the program automatically saves the models, with the assistance of the joblib library, as they will be used for classification in the chatbot.py file.<br>
@@ -41,7 +41,7 @@
 &emsp;&emsp;To conclude, the chatbot.py program, after collecting all the data, such as personal information and symptoms of the patient, generates a docx file, which serves as the patient's medical record.
 . <br>
 
-## Resultados
+## Results
 &emsp;&emsp; Regarding KNN and Random Forest, I chose multiple metrics to analyze effectiveness, ensuring we don't rely on just one and potentially have a false impression of the model's performance. Remembering that: {0: Allergy, 1: Cold, 2: COVID, 3: Flu}<br>
 &emsp;&emsp;<b>Random Forest</b>:With an average model accuracy of 93%, we can observe in the confusion matrix that true positives and true negatives occur much more frequently than false positives and false negatives. Cases of flu, which have a higher tendency to be easily confused with COVID, are more prone to errors.<br>
 
@@ -290,14 +290,14 @@ Epoch 100 <br>/100 <br>
 Training complete <br>
 </code>
 
-## Conclusão
+## Conclusion
 &emsp;&emsp; Despite the models having high accuracies, there are many cases of flu and colds that are confused with COVID. Since COVID is a highly contagious disease that caused a pandemic affecting the entire world, it might not be advisable to rely too heavily on the diagnosis of COVID, flu, and colds, as they are confused more frequently than I expected. However, the models were excellent at distinguishing these cases from allergies, which is beneficial because allergies have symptoms very similar to COVID.
 
 
-## Referências
+## References
 https://sigmoidal.ai/como-lidar-com-dados-desbalanceados/ <br>
 https://www.youtube.com/watch?v=1lwddP0KUEg&t=1737s
 
-## Responsáveis
+## Responsibles
 - [Luísa de Souza Ferreira](https://github.com/ferreiraluisa)
 
