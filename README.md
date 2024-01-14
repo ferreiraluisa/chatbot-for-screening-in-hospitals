@@ -5,28 +5,28 @@
 <h1 align = "center"> Trabalho Final - INF420 </h1>
 
 
-<h2 align = "center"> ChatBot para triagem em Hospitais </h2>
+<h2 align = "center"> ChatBot for screening in hospitals </h2>
 
 
-## Índice
+## Index
 
-- [Resumo](#Resumo)
-- [Introdução](#Introdução)
-- [Metodologia](#Metodologia)
-- [Resultados](#Resultados)
-- [Conclusão](#Conclusão)
-- [Referências](#Referências)
-- [Responsáveis](#Responsáveis)
+- [Summary](#Resumo)
+- [Introduction](#Introdução)
+- [Methodology](#Metodologia)
+- [Results](#Resultados)
+- [Conclusion](#Conclusão)
+- [References](#Referências)
+- [Responsibles](#Responsáveis)
 
 ## Resumo
-&emsp;&emsp;Projeto final apresentado à disciplina de Inteligência Artificial I, de código INF 420, ministrada pelo professor Julio C. S. Reis, como requisito parcial para aprovação na disciplina.
+&emsp;&emsp;Final project presented to the Artificial Intelligence I course, with code INF 420, taught by Professor Julio C. S. Reis, as a partial requirement for approval in the course.
 
 ## Introdução
-&emsp;&emsp;O trabalho proposto é um chatbot responsável por fazer triagem em hospitais para diferenciar os casos de COVID entre os seguintes casos com sintomas semelhantes: alergia, resfriado e gripe. Além disso, no final, ele gera uma ficha médica do paciente com informações pessoais, como nome, idade, profissão, os sintomas, quantos dias ele está doente e resultado da predição feito com técnicas de inteligência artificial. 
-&emsp;&emsp;Para conseguir usar o chatBot, é necessário rodar randomforest_knn.py e trainingBot.py antes de rodar o chatBot.py.
+&emsp;&emsp;The proposed project is a chatbot responsible for screening in hospitals to differentiate COVID cases from other similar symptomatic cases, such as allergy, cold, and flu. Additionally, at the end, it generates a medical record of the patient with personal information, such as name, age, occupation, symptoms, the number of days the person has been sick, and the result of the prediction made using artificial intelligence techniques.<br>
+&emsp;&emsp;To use the chatbot, it is necessary to run randomforest_knn.py and trainingBot.py before running chatBot.py.<br>
  
 ## Metodologia
-&emsp;&emsp;Utilizei um <a href="https://www.kaggle.com/datasets/walterconway/covid-flu-cold-symptoms">dataset</a> disponível no Kaggle, com vários casos de enfermidade junto aos seus sintomas e a classificação de cada um dos casos como alergia, resfriado, covid ou gripe. Essa base de dados está desbalanceada, existem muitos casos de alergia e gripe em comparação com covid e resfriado,isso é um problema pois pode gerar muitos "alarmes falsos", o diagnóstico acabaria tendenciando muito para alergia e gripe, pois tem muitas amostras e por os sintomas entre as quatro enfermidades serem bem semelhantes, além de dificultar a avaliação de eficácia. Por isso, utilizei a técnica de under-sampling, com o método RandomUnderSampler() da biblioteca imblearn.under_sampling.<br>
+&emsp;&emsp;I used a <a href="https://www.kaggle.com/datasets/walterconway/covid-flu-cold-symptoms">dataset</a> available on Kaggle, containing various illness cases along with their symptoms and the classification of each case as allergy, cold, COVID, or flu. This database is imbalanced, with many cases of allergy and flu compared to COVID and cold. This is a problem as it can lead to many "false alarms," with the diagnosis leaning heavily towards allergy and flu due to their higher sample count. The symptoms among the four illnesses are quite similar, making it challenging to assess effectiveness. Therefore, I employed the under-sampling technique using the RandomUnderSampler() method from the imblearn.under_sampling library.<br>
     <figure align="left">
         <img src="imagens/without_under_sampling.png" alt="sem under sampling" height= "250">
         <figcaption>Sem under sampling</figcaption>
@@ -36,13 +36,14 @@
         <figcaption>Com under sampling</figcaption>
     </figure>
 <br>
-&emsp;&emsp;Para resolver o problema de classificação, utilizei duas técnicas: Random Forest e K-Nearest neighbor. Para random forest, coloquei o número de árvores de decisão como 10, com critério entropy de separação e um random_state de 42. Para o K-Nearest neighbor, coloquei um número de vizinhos de 10 e a métrica euclidiana. O treinamento dos modelos estão no arquivo randomforest_knn.py . Depois do treinamento, o programa automaticamente salva os modelos, com auxílio da biblioteca joblib pois eles serão usados para classifição no arquivo chatbot.py.<br>
-&emsp;&emsp;Para o desenvolvimento do chatbot, fiz uma rede neural simples, com três camadas densas e duas de dropout, utilizei o Adam como otimizador com um learning rate de 0.01 ,pois foi o melhor otimizador que tinha encontrado quando fiz o trabalho 4 dessa disciplina(testei com o SGD também, porém o desempenho do Adam foi melhor). O treinamento do chatBot é feito no arquivo trainingBot.py e a aplicação do chatBot é feito no arquivo chatBot.py. Tive que fazer o chatbot em inglês, pois utilizei o método WordLemmatizer, da biblioteca nltk, cuja função é agrupar as formas flexionadas de uma palavra para que possam ser analisadas como um único item, por exemplo, no inglês temos várias variações da palavra 'work', como 'works, 'worked', 'working', esse método pega todas essas palavras para serem analisada como 'work', não achei uma maneira fácil de usar esse método na língua portuguesa, logo peço perdão caso encontre algum erro no inglês. <br>
-&emsp;&emsp;Para finalizar, o programa chatbot.py, após pegar todos os dados, como informações pessoais e sintomas do paciente, gera um arquivo docx, que seria a ficha médica do paciente. <br>
+&emsp;&emsp;To address the classification problem, I employed two techniques: Random Forest and K-Nearest Neighbor. For Random Forest, I set the number of decision trees to 10, with separation criterion as entropy, and a random_state of 42. For K-Nearest Neighbor, I chose a number of neighbors as 10 and used the Euclidean metric. The training of the models is in the file randomforest_knn.py. After training, the program automatically saves the models, with the assistance of the joblib library, as they will be used for classification in the chatbot.py file.<br>
+&emsp;&emsp;For the development of the chatbot, I created a simple neural network with three dense layers and two dropout layers. I used Adam as the optimizer with a learning rate of 0.01, as it was the best optimizer I had found when working on assignment 4 of this course (I also tested with SGD, but Adam showed better performance). The training of the chatbot is done in the trainingBot.py file, and the application of the chatbot is done in the chatBot.py file. I had to implement the chatbot in English because I used the WordLemmatizer method from the nltk library, which groups inflected forms of a word so that they can be analyzed as a single item. For example, in English, we have various variations of the word 'work', such as 'works,' 'worked,' 'working.' This method combines all these forms to be analyzed as 'work.' I didn't find an easy way to use this method in Portuguese, so I apologize if you find any errors in English. <br>
+&emsp;&emsp;To conclude, the chatbot.py program, after collecting all the data, such as personal information and symptoms of the patient, generates a docx file, which serves as the patient's medical record.
+. <br>
 
 ## Resultados
-&emsp;&emsp; Em relação ao KNN e ao random forest, escolhi várias métricas para podermos analisarmos a eficácia, para não ter problema de confiarmos em apenas uma e termos uma falsa impressão que o modelo está satisfatório. Lembrando que: {0 : Alergia, 1 : Resfriado, 2 : COVID, 3 : GRIPE}<br>
-&emsp;&emsp;<b>Random Forest</b>:Tem uma média de eficácia do modelo de 93% e podemos observar na matriz de confusão que os verdadeiros positivos e negativos ocorrem com bastante mais frequência que os falsos positivos e negativos, os casos de gripe que tem mais tendência a erro facilmente confundidos por COVID <br>
+&emsp;&emsp; Regarding KNN and Random Forest, I chose multiple metrics to analyze effectiveness, ensuring we don't rely on just one and potentially have a false impression of the model's performance. Remembering that: {0: Allergy, 1: Cold, 2: COVID, 3: Flu}<br>
+&emsp;&emsp;<b>Random Forest</b>:With an average model accuracy of 93%, we can observe in the confusion matrix that true positives and true negatives occur much more frequently than false positives and false negatives. Cases of flu, which have a higher tendency to be easily confused with COVID, are more prone to errors.<br>
 
 <code>
 ---------------- Random Forest ----------------
@@ -61,10 +62,10 @@ weighted avg       0.93      0.93      0.93       844
 
 <figure align="right" >
     <img src="imagens/ConfusionMatrixRF.png" alt="sem under sampling"  height= "250">
-    <figcaption>Matriz de confusão do Random Forest</figcaption>
+    <figcaption>Confusion Matrix Random Forest</figcaption>
 </figure><br>
  
-&emsp;&emsp;<b>K-Nearest neighbor</b>:Tem uma média de eficácia do modelo de 86% e podemos observar na matriz de confusão que os verdadeiros positivos e negativos ocorrem com bastante mais frequência que os falsos positivos e negativos, os casos de gripe que tem mais tendência a erro facilmente confundidos por COVID e resfriados.<br>
+&emsp;&emsp;<b>K-Nearest neighbor</b>:TWith an average model accuracy of 86%, we can observe in the confusion matrix that true positives and true negatives occur much more frequently than false positives and false negatives. Cases of flu, which have a higher tendency to be easily confused with COVID and colds, are more prone to errors.<br>
 <code>
 ---------------- K-Nearest neighbor ----------------
               precision    recall  f1-score   support
@@ -81,10 +82,10 @@ weighted avg       0.89      0.86      0.85       844
 <br>
 <figure align="right" >
     <img src="imagens/ConfusionMatrixKNN.png" alt="sem under sampling"  height= "250">
-    <figcaption>Matriz de confusão do Random Forest</figcaption>
+    <figcaption>Confusion Matrix KNN</figcaption>
  </figure><br>
  
- &emsp;&emsp;Para rede neural utilizada para a construção do chatBot, temos uma acurácia de 98.25% após o treinamento de 200 epócas.<br>
+ &emsp;&emsp;For the neural network used in building the chatbot, we achieved an accuracy of 98.25% after training for 200 epochs.<br>
 <code>
 Epoch 1/100 <br>
 12/12 [==============================] - 1s 2ms/step - loss: 2.0453 - accuracy: 0.2281 <br>
@@ -290,7 +291,7 @@ Training complete <br>
 </code>
 
 ## Conclusão
-&emsp;&emsp; Apesar dos modelos terem eficácias altas, existem muitos casos de gripe e resfriados que são confundidos com COVID e como o COVID é uma doença altamente contagiosa, que foi responsável por uma pandemia que parou o mundo inteiro, talvez não seja muito aconselhável confiar no diagnóstico de COVID, gripe e resfriado, já que são confundidos com uma frequência maior que eu esperava. Porém, os modelos foram excelentes em separar esses casos da alergia, o que é bom porque a alergia tem sintomas bem semelhantes ao COVID. 
+&emsp;&emsp; Despite the models having high accuracies, there are many cases of flu and colds that are confused with COVID. Since COVID is a highly contagious disease that caused a pandemic affecting the entire world, it might not be advisable to rely too heavily on the diagnosis of COVID, flu, and colds, as they are confused more frequently than I expected. However, the models were excellent at distinguishing these cases from allergies, which is beneficial because allergies have symptoms very similar to COVID.
 
 
 ## Referências
